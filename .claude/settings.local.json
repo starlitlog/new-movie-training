@@ -11,7 +11,10 @@
       "Bash(source .venv/bin/activate)",
       "Bash(huggingface-cli repo create:*)",
       "Bash(import pathlib)",
-      "Bash(huggingface-cli upload:*)"
+      "Bash(huggingface-cli upload:*)",
+      "Bash(hf repo --help:*)",
+      "Bash(hf --help:*)",
+      "Bash(hf repo-files:*)"
     ]
   }
 }

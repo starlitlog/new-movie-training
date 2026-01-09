@@ -624,12 +624,12 @@ ylliprifti/documentary-personas/
 | 2026-01-09 | Data strategy | Complete | 3 types (extracted/transformed/hypothetical), ~1000 records, 3 primary personas |
 | 2026-01-09 | Data generation script | Complete | `generate_persona_data.py` created with persona definitions and dialog structures |
 | 2026-01-09 | Dataset generation | Complete | 520 records generated (181 extracted, 160 transformed, 179 hypothetical) |
-| 2026-01-09 | Training configs | Complete | Created 3 train configs + 6 eval configs (fine-tuned + baseline) |
-| 2026-01-09 | Training Round 1 | In Progress | Llama 3 8B training completed; reduced epochs 10→6 after observing convergence |
-| | Merge weights | Pending | Merge LoRA adapters into base models |
-| | Evaluation Round 1 | Pending | Compare fine-tuned vs baseline metrics |
-| | GGUF conversion | Pending | Convert best model(s) to GGUF format |
-| | HuggingFace Push | Pending | Publish model + GGUF files |
+| 2026-01-09 | Training configs | Complete | Created 3 train configs + 6 eval configs; reduced epochs 10→6 after observing convergence |
+| 2026-01-09 | **Llama 3 8B** | Complete | Trained, merged, evaluated (ROUGE-1: 0.296, BLEU: 0.114) |
+| 2026-01-09 | GGUF conversion | Complete | Created model-f16.gguf |
+| 2026-01-09 | HuggingFace Push | Complete | Published to [ylliprifti/documentary-personas](https://huggingface.co/ylliprifti/documentary-personas) |
+| 2026-01-09 | **Mistral 7B** | Pending | Next: `make train TRAIN_CONFIG=train_mistral_7b` |
+| | **Llama 3.2 3B Instruct** | Pending | After Mistral |
 
 ---
 
@@ -639,20 +639,11 @@ ylliprifti/documentary-personas/
 2. [x] Generate dataset (520 records: 458 train, 62 eval)
 3. [x] Create training configs for all 3 models
 4. [x] Create eval configs for fine-tuned and baseline comparisons
-5. [ ] **Round 1 Training**:
-   - [x] Train Llama 3 8B (in progress)
-   - [ ] Train Mistral 7B
-   - [ ] Train Llama 3.2 3B Instruct
-6. [ ] **Merge weights** for each trained model
-7. [ ] **Evaluate** all models:
-   - [ ] Run eval on fine-tuned models
-   - [ ] Run eval on baselines
-   - [ ] Compare metrics and spot-check outputs
-8. [ ] **Convert to GGUF** (best performer)
-9. [ ] **Push to HuggingFace**:
-   - [ ] Upload safetensors model
-   - [ ] Upload GGUF files
-   - [ ] Create model card
+5. **Model Training**:
+   - [x] **Llama 3 8B** - Complete (train → merge → eval → GGUF → HF push)
+   - [ ] **Mistral 7B** - Next
+   - [ ] **Llama 3.2 3B Instruct** - After Mistral
+6. [ ] Compare all models and document findings
 
 ---
 

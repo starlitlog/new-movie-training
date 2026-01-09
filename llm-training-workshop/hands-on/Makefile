@@ -157,8 +157,12 @@ eval-baseline:
 
 # === Model Packaging ===
 QUANT := Q5_K_M
-LLAMA_CPP := ../../../llama.cpp/ #~/Dev/llama.cpp/ #../llama.cpp
+LLAMA_CPP := $(HOME)/Dev/llama.cpp
 CUDA_DEVICE := 0
+
+# Derive model name from TRAIN_CONFIG (e.g., train_llama3_8b -> llama3-8b)
+# Usage: make gguf TRAIN_CONFIG=train_llama3_8b
+MODEL_NAME = $(shell echo "$(TRAIN_CONFIG)" | sed 's/^train_//;s/_/-/g')
 
 merge:
 	@echo "🔀 Merging LoRA adapter into base model..."
@@ -166,25 +170,45 @@ merge:
 	@echo "✅ Merged model saved to outputs/runs/latest/merged"
 
 gguf: #merge
-	@echo "📦 Converting to GGUF ($(QUANT))..."
-	$(ACTIVATE) $(PYTHON) $(LLAMA_CPP)/convert_hf_to_gguf.py \
-		outputs/runs/latest/merged \
-		--outfile outputs/runs/latest/merged/model-f16.gguf \
-		--outtype f16
+	@if [ -z "$(TRAIN_CONFIG)" ] || [ "$(TRAIN_CONFIG)" = "train" ]; then \
+		echo "❌ Error: TRAIN_CONFIG required. Usage: make gguf TRAIN_CONFIG=train_llama3_8b"; \
+		exit 1; \
+	fi
+	@echo "📦 Converting to GGUF: $(MODEL_NAME) ($(QUANT))..."
+	@if [ ! -f outputs/runs/latest/merged/$(MODEL_NAME)-f16.gguf ]; then \
+		echo "Creating F16 GGUF..."; \
+		$(ACTIVATE) $(PYTHON) $(LLAMA_CPP)/convert_hf_to_gguf.py \
+			outputs/runs/latest/merged \
+			--outfile outputs/runs/latest/merged/$(MODEL_NAME)-f16.gguf \
+			--outtype f16; \
+	else \
+		echo "F16 GGUF already exists, skipping conversion..."; \
+	fi
 	$(LLAMA_CPP)/build/bin/llama-quantize \
-		outputs/runs/latest/merged/model-f16.gguf \
-		outputs/runs/latest/merged/model-$(QUANT).gguf \
+		outputs/runs/latest/merged/$(MODEL_NAME)-f16.gguf \
+		outputs/runs/latest/merged/$(MODEL_NAME)-$(QUANT).gguf \
 		$(QUANT)
-	@echo "✅ GGUF model saved to outputs/runs/latest/merged/model-$(QUANT).gguf"
+	@echo "✅ GGUF saved: outputs/runs/latest/merged/$(MODEL_NAME)-f16.gguf"
+	@echo "✅ GGUF saved: outputs/runs/latest/merged/$(MODEL_NAME)-$(QUANT).gguf"
 
 publish:
 	$(ACTIVATE) $(PYTHON) -m $(MODULE) publish outputs/runs/latest/model
 
 publish-hf:
-	@echo "📤 Publishing to HuggingFace..."
-	@test -f .env && export $$(grep -v '^#' .env | xargs) || true; \
-	$(ACTIVATE) $(PYTHON) -m $(MODULE) publish-hf outputs/runs/latest/model
-	@echo "✅ Published to HuggingFace"
+	@if [ -z "$(TRAIN_CONFIG)" ] || [ "$(TRAIN_CONFIG)" = "train" ]; then \
+		echo "❌ Error: TRAIN_CONFIG required. Usage: make publish-hf TRAIN_CONFIG=train_llama3_8b"; \
+		exit 1; \
+	fi
+	@if [ -z "$(HF_REPO_ID)" ]; then \
+		echo "❌ Error: HF_REPO_ID required. Export it first: export HF_REPO_ID=username/repo"; \
+		exit 1; \
+	fi
+	@echo "📤 Publishing $(MODEL_NAME) to HuggingFace $(HF_REPO_ID)/$(MODEL_NAME)..."
+	$(ACTIVATE) hf upload $(HF_REPO_ID) \
+		outputs/runs/latest/merged \
+		$(MODEL_NAME) \
+		--commit-message "Upload $(MODEL_NAME) model files"
+	@echo "✅ Published to https://huggingface.co/$(HF_REPO_ID)/tree/main/$(MODEL_NAME)"
 
 clean:
 	rm -rf outputs/__pycache__ */__pycache__ *.pyc
