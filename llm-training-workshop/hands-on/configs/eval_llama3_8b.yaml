@@ -1,5 +1,5 @@
 # Eval config for fine-tuned Llama 3 8B
-model_path: outputs/llama3_8b/merged
+model_path: outputs/runs/latest/merged
 model_subfolder:
 dataset_path: ./data/eval
 dataset_pattern: "*.jsonl"

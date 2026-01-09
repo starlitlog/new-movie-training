@@ -5,7 +5,7 @@
 model_name: mistralai/Mistral-7B-v0.3
 dataset_path: ./data
 dataset_pattern: "*.jsonl"
-tokenized_path: data/tokenized_mistral_7b
+tokenized_path: data/tokenized
 use_tokenized: true
 data_format: prompt_completion
 
@@ -18,7 +18,7 @@ output_dir: outputs/mistral_7b
 
 # Training hyperparameters
 # Higher epochs for persona learning with limited data
-epochs: 10
+epochs: 6
 batch_size: 4
 lr: 2e-4
 gradient_accumulation_steps: 2  # Effective batch size = 8

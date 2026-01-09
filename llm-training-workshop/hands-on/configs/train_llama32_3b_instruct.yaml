@@ -5,7 +5,7 @@
 model_name: meta-llama/Llama-3.2-3B-Instruct
 dataset_path: ./data
 dataset_pattern: "*.jsonl"
-tokenized_path: data/tokenized_llama32_3b
+tokenized_path: data/tokenized
 use_tokenized: true
 data_format: prompt_completion
 
@@ -19,7 +19,7 @@ output_dir: outputs/llama32_3b_instruct
 # Training hyperparameters
 # Smaller model = can use larger batch size
 # Higher epochs for persona learning with limited data
-epochs: 10
+epochs: 6
 batch_size: 8
 lr: 3e-4  # Slightly higher LR for smaller model
 gradient_accumulation_steps: 1  # Effective batch size = 8

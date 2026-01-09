@@ -7,7 +7,11 @@
       "Bash(python:*)",
       "Bash(python3:*)",
       "Bash(wc:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(huggingface-cli repo create:*)",
+      "Bash(import pathlib)",
+      "Bash(huggingface-cli upload:*)"
     ]
   }
 }

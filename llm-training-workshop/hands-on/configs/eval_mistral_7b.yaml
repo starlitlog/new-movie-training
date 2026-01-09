@@ -1,5 +1,5 @@
 # Eval config for fine-tuned Mistral 7B
-model_path: outputs/mistral_7b/merged
+model_path: outputs/runs/latest/merged
 model_subfolder:
 dataset_path: ./data/eval
 dataset_pattern: "*.jsonl"
