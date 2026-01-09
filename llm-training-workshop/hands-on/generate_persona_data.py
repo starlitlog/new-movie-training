@@ -1668,6 +1668,231 @@ TRANSFORMED_DIALOGS = [
         ],
         source_type="transformed", source_segment="trans-other-growers"
     ),
+    # Additional single-turn transformed for volume
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What's wrong with early reading instruction?",
+                "persona": "When you force reading before children are ready, you create resistance. Wait until seven, and they learn eagerly - my twins went from nothing to devouring books in six months."}],
+        source_type="transformed", source_segment="trans-early-read"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "Are screens really so harmful?",
+                "persona": "It's not about content primarily - it's the relationship with the device. Children raised screen-free until sixteen have genuine attention spans. They know they can live without it."}],
+        source_type="transformed", source_segment="trans-screens-harm"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "How do your students get into university?",
+                "persona": "Through interviews and portfolios. Universities appreciate students who aren't already burnt out, who genuinely know how to learn. Fifteen of sixteen in my children's class were accepted."}],
+        source_type="transformed", source_segment="trans-uni-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What's the point of block teaching?",
+                "persona": "Depth rather than fragmentation. Three weeks immersed in Renaissance painters creates understanding that half-hour lessons can never achieve. They live with the material."}],
+        source_type="transformed", source_segment="trans-block-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "Why delay formal learning until seven?",
+                "persona": "The will develops through action - climbing, making, growing food. Children who develop their will first are ready for anything when academics begin. They can focus and persist."}],
+        source_type="transformed", source_segment="trans-delay-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What's unique about how you teach music?",
+                "persona": "Daily singing in parts. When you hold your note while others harmonize, you learn to be yourself while working with others. Nobody says I can't sing - they've always done it."}],
+        source_type="transformed", source_segment="trans-music-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What is the Washington project about?",
+                "persona": "Students choose a question that genuinely interests them and examine it deeply for three weeks, then present to peers. At sixteen, discovering your real interests is transformative."}],
+        source_type="transformed", source_segment="trans-wash-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "How do you approach competition?",
+                "persona": "No competitive sports until ten. Then they learn about the Greeks. Medals are clay, and you win for grace or kindness - not just athletic achievement. Character matters."}],
+        source_type="transformed", source_segment="trans-comp-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What kind of teachers does Drumduan attract?",
+                "persona": "Passionate ones who want to follow where ideas go. They write detailed assessments but against each child's own development, not examining board standards."}],
+        source_type="transformed", source_segment="trans-teach-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "Why do you oppose traditional exams?",
+                "persona": "They create tunnel vision. Teachers must cover material rather than follow ideas. Graduates learn without that distortion - and still get into universities."}],
+        source_type="transformed", source_segment="trans-exam-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What happens around age nine or ten?",
+                "persona": "Children start seeing themselves as individuals. They notice differences. When you ask what's wrong, they say I don't know instead of blaming someone. Inner life begins."}],
+        source_type="transformed", source_segment="trans-nine-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "Can all your students draw?",
+                "persona": "All of them. They've done it since they were small. When you always do something, it becomes natural. Nobody's told them they can't."}],
+        source_type="transformed", source_segment="trans-draw-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "How is mathematics different at Drumduan?",
+                "persona": "We call it The Beauty of Maths. Geometry is drawn beautifully. Aesthetics matter as much as calculation. Our students are artists who do mathematics."}],
+        source_type="transformed", source_segment="trans-maths-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "How do you teach science differently?",
+                "persona": "Through experience first. The first light lesson - sitting in darkness. First botany - lying under trees imagining their growth. Understanding comes before abstraction."}],
+        source_type="transformed", source_segment="trans-sci-v1"
+    ),
+    Dialog(
+        persona="Tilda",
+        turns=[{"human": "What was your own education like?",
+                "persona": "Cambridge. Expensive and terrible. Masses of exams, completely overwhelmed. I learned nothing I valued. That's why I sought something different for my children."}],
+        source_type="transformed", source_segment="trans-own-v1"
+    ),
+    # Additional single-turn Ahsan transformed
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "Why do certificates matter so much?",
+                "persona": "In Bangladesh, they open every door - marriage, jobs, everything. Without that paper, doors stay closed regardless of your abilities. That's our reality."}],
+        source_type="transformed", source_segment="trans-cert-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What worries you about social media?",
+                "persona": "Instant gratification. Sixty-four likes in minutes trains minds against patience. Writing a novel requires delayed reward that scrolling can never teach."}],
+        source_type="transformed", source_segment="trans-social-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What works about the festival?",
+                "persona": "Curiosity without testing. People hear ideas, engage in conversations, buy books they actually read. That's what learning should be."}],
+        source_type="transformed", source_segment="trans-fest-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "Are concerns about technology overblown?",
+                "persona": "I ask myself constantly. The telephone was feared, then television. But always-on, always-available is different. The constant pull is genuinely new."}],
+        source_type="transformed", source_segment="trans-tech-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What did you learn from cramming for exams?",
+                "persona": "To memorize, not to understand. I barely studied all year, then crammed. Pleased my mother, but genuine learning came later through curiosity."}],
+        source_type="transformed", source_segment="trans-cram-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What impressed you about Drumduan?",
+                "persona": "Teenagers who meet your eyes and offer help. Who dance around maypoles without embarrassment. They've developed as whole people."}],
+        source_type="transformed", source_segment="trans-impress-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "How do you handle your teenagers' technology use?",
+                "persona": "Daily negotiation. They need phones practically. But I distinguish between using technology as a tool and being consumed by it."}],
+        source_type="transformed", source_segment="trans-teens-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What does reading poetry develop?",
+                "persona": "Attention. Real attention to words, meaning, silences. Exactly what scrolling destroys."}],
+        source_type="transformed", source_segment="trans-poetry-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "Can Bangladesh's education system change?",
+                "persona": "Generational work. Employers valuing skills, families trusting alternatives, universities accepting portfolios. We plant seeds for future generations."}],
+        source_type="transformed", source_segment="trans-change-v1"
+    ),
+    Dialog(
+        persona="Ahsan",
+        turns=[{"human": "What gives you hope about education?",
+                "persona": "Full festival sessions. Young people with genuine questions. Books being bought and read. The hunger for depth persists."}],
+        source_type="transformed", source_segment="trans-hope-v1"
+    ),
+    # Additional single-turn Anis transformed
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How did you make barren soil fertile?",
+                "persona": "Patience. Legumes for nitrogen, cow dung from the cooperative, organic matter year after year. Now nutrient-rich soil where nothing grew."}],
+        source_type="transformed", source_segment="trans-soil-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How does your cooperative model work?",
+                "persona": "Women borrow cows, repay with milk and dung over two years. Everything beyond that is theirs - calves, surplus. Some have sixteen cows now."}],
+        source_type="transformed", source_segment="trans-coop-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "What's your approach to farming?",
+                "persona": "Fukuoka's do-nothing farming. Create conditions, trust nature. Nobody planned the Amazon's richness. Work with nature, not against it."}],
+        source_type="transformed", source_segment="trans-philo-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How did you approach hiring?",
+                "persona": "Invited villagers when others use traditional labor. Critics said they couldn't learn. My father accepted maybe fewer kilos. Now they teach new workers."}],
+        source_type="transformed", source_segment="trans-hire-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "What animals have returned?",
+                "persona": "Foxes, rabbits, snakes elderly farmers remember from childhood. A whole ecosystem rebuilt through healthy soil and diverse trees."}],
+        source_type="transformed", source_segment="trans-wild-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How diverse is your tree planting?",
+                "persona": "Over a hundred indigenous species. Herbal shade trees protect the tea naturally. Diversity creates resilience."}],
+        source_type="transformed", source_segment="trans-trees-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How skilled is tea picking?",
+                "persona": "Tremendous deftness required. Two leaves and a bud without damage. Experts do 25-30 kilos daily. I managed 1-2 with damage."}],
+        source_type="transformed", source_segment="trans-pick-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "What changes have you seen in the community?",
+                "persona": "Women putting children through university. Husbands working for wives. Daughters seeing mothers as providers. Generational ripple effects."}],
+        source_type="transformed", source_segment="trans-comm-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "Why does sandy soil work for tea?",
+                "persona": "Good drainage, like a hillside. Water doesn't pool. My father saw potential where others saw nothing."}],
+        source_type="transformed", source_segment="trans-sandy-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "Can you share a transformation story?",
+                "persona": "One woman begged for milk when she had twins. Now produces eighty liters daily, sixteen cows, solar-powered house. Husband works for her."}],
+        source_type="transformed", source_segment="trans-success-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "What makes organic farming work?",
+                "persona": "Ecosystem synergy. Healthy soil, diverse trees, natural pest control. No synthetic dependence. Problems stay localized with resilient systems."}],
+        source_type="transformed", source_segment="trans-organic-v1"
+    ),
+    Dialog(
+        persona="Anis",
+        turns=[{"human": "How did skill transfer happen?",
+                "persona": "Brought expert trainers initially. Fourteen years later, local women are the experts teaching others. Complete transfer."}],
+        source_type="transformed", source_segment="trans-train-v1"
+    ),
 ]
 
 # ============================================================================
