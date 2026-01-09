@@ -269,21 +269,26 @@ python3 generate_persona_data.py
 
 ### 1.5 Current Data Status
 
-**Starter dataset generated: 41 records**
+**Dataset generated: 520 records**
 
 | Type | Count | Description |
 |------|-------|-------------|
-| Extracted | 21 | Direct quotes and topics from transcripts |
-| Transformed | 8 | Same content, different expression |
-| Hypothetical | 12 | New scenarios matching persona tone |
+| Extracted | 181 | Direct quotes and topics from transcripts |
+| Transformed | 160 | Same content, different expression |
+| Hypothetical | 179 | New scenarios matching persona tone |
 
 | Persona | Count |
 |---------|-------|
-| Tilda | 20 |
-| Ahsan | 9 |
-| Anis | 12 |
+| Tilda | 215 |
+| Anis | 174 |
+| Ahsan | 131 |
 
-**To reach ~1000 records:** Extend the dialog arrays in `generate_persona_data.py`. Each array (`EXTRACTED_DIALOGS`, `TRANSFORMED_DIALOGS`, `HYPOTHETICAL_DIALOGS`) can be expanded by adding more `Dialog` objects following the established patterns.
+| Split | Count | Files |
+|-------|-------|-------|
+| Train | 458 | `batch_1.jsonl` through `batch_5.jsonl` |
+| Eval | 62 | `eval/eval.jsonl` |
+
+**To expand further:** Add more `Dialog` objects to the arrays in `generate_persona_data.py` and re-run the script.
 
 ---
 
@@ -368,8 +373,7 @@ Create `data/eval/test.jsonl` with persona-based test cases:
 | 2026-01-09 | Data format | Complete | Chose prompt/completion format for cross-model compatibility |
 | 2026-01-09 | Data strategy | Complete | 3 types (extracted/transformed/hypothetical), ~1000 records, 3 primary personas |
 | 2026-01-09 | Data generation script | Complete | `generate_persona_data.py` created with persona definitions and dialog structures |
-| 2026-01-09 | Starter dataset | Complete | 41 records generated (21 extracted, 8 transformed, 12 hypothetical) |
-| | Expand dataset | In Progress | Need to add more dialogs to reach ~1000 records |
+| 2026-01-09 | Dataset generation | Complete | 520 records generated (181 extracted, 160 transformed, 179 hypothetical) |
 | | Training Round 1 | Pending | Train all 3 models |
 | | Evaluation Round 1 | Pending | Compare metrics across models |
 | | Iteration/Refinement | Pending | Adjust based on results |
@@ -380,11 +384,10 @@ Create `data/eval/test.jsonl` with persona-based test cases:
 ## Next Steps
 
 1. [x] Create data extraction/formatting script
-2. [x] Generate starter dataset (41 records)
-3. [ ] **Expand dataset to ~1000 records** - Add more dialogs to the three arrays in `generate_persona_data.py`
-4. [ ] Create training configs for all 3 models
-5. [ ] **Round 1**: Train Llama 3 8B, Mistral 7B, Llama 3.2 3B Instruct
-6. [ ] Evaluate all models, compare metrics
-7. [ ] **Round 2**: Refine best performer(s), adjust hyperparameters
-8. [ ] **Round 3**: Final tuning if needed
+2. [x] Generate dataset (520 records: 458 train, 62 eval)
+3. [ ] Create training configs for all 3 models
+4. [ ] **Round 1**: Train Llama 3 8B, Mistral 7B, Llama 3.2 3B Instruct
+5. [ ] Evaluate all models, compare metrics
+6. [ ] **Round 2**: Refine best performer(s), adjust hyperparameters
+7. [ ] **Round 3**: Final tuning if needed
 9. [ ] Push best model to HuggingFace
