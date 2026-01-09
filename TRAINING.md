@@ -1,5 +1,7 @@
 # Persona-Based LLM Training Guide
 
+**Author: Dr Ylli Prifti**
+
 Training a model to embody documentary/film personas - responding with their knowledge and tone.
 
 ## Project Overview
