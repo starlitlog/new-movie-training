@@ -1,0 +1,63 @@
+# Llama 3.2 3B Instruct - Persona Training Configuration
+# Model: meta-llama/Llama-3.2-3B-Instruct (instruct-tuned, control experiment)
+# Optimized for RTX 8000 48GB VRAM
+
+model_name: meta-llama/Llama-3.2-3B-Instruct
+dataset_path: ./data
+dataset_pattern: "*.jsonl"
+tokenized_path: data/tokenized_llama32_3b
+use_tokenized: true
+data_format: prompt_completion
+
+# Data source configuration
+data_source:
+  type: local
+
+cuda_visible_devices: "0"
+output_dir: outputs/llama32_3b_instruct
+
+# Training hyperparameters
+# Smaller model = can use larger batch size
+# Higher epochs for persona learning with limited data
+epochs: 10
+batch_size: 8
+lr: 3e-4  # Slightly higher LR for smaller model
+gradient_accumulation_steps: 1  # Effective batch size = 8
+max_length: 512
+
+# Learning rate schedule
+warmup_ratio: 0.05
+weight_decay: 0.01
+lr_scheduler_type: cosine
+
+# Precision (RTX 8000 uses FP16)
+bf16: false
+fp16: true
+
+# LoRA configuration
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Logging and checkpointing
+save_steps: 50
+logging_steps: 10
+logging_strategy: "steps"
+evaluation_strategy: "steps"
+eval_steps: 50
+save_total_limit: 3
+
+# Memory optimization
+gradient_checkpointing: false
+
+# DataLoader optimization
+dataloader_num_workers: 8
+dataloader_prefetch_factor: 4

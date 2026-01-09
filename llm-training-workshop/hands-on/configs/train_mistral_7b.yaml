@@ -1,0 +1,63 @@
+# Mistral 7B Base - Persona Training Configuration
+# Model: mistralai/Mistral-7B-v0.3 (base model, no instruct tuning)
+# Optimized for RTX 8000 48GB VRAM
+
+model_name: mistralai/Mistral-7B-v0.3
+dataset_path: ./data
+dataset_pattern: "*.jsonl"
+tokenized_path: data/tokenized_mistral_7b
+use_tokenized: true
+data_format: prompt_completion
+
+# Data source configuration
+data_source:
+  type: local
+
+cuda_visible_devices: "0"
+output_dir: outputs/mistral_7b
+
+# Training hyperparameters
+# Higher epochs for persona learning with limited data
+epochs: 10
+batch_size: 4
+lr: 2e-4
+gradient_accumulation_steps: 2  # Effective batch size = 8
+max_length: 512
+
+# Learning rate schedule
+warmup_ratio: 0.05
+weight_decay: 0.01
+lr_scheduler_type: cosine
+
+# Precision (RTX 8000 uses FP16)
+bf16: false
+fp16: true
+
+# LoRA configuration
+# Mistral uses same projection names as Llama
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Logging and checkpointing
+save_steps: 50
+logging_steps: 10
+logging_strategy: "steps"
+evaluation_strategy: "steps"
+eval_steps: 50
+save_total_limit: 3
+
+# Memory optimization
+gradient_checkpointing: false
+
+# DataLoader optimization
+dataloader_num_workers: 8
+dataloader_prefetch_factor: 4

@@ -6,7 +6,8 @@
       "Bash(content = '' ')",
       "Bash(python:*)",
       "Bash(python3:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(ls:*)"
     ]
   }
 }
