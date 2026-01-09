@@ -1,5 +1,7 @@
 # Persona Model Usage Guide
 
+**Author: Dr Ylli Prifti**
+
 This guide explains how to use the fine-tuned persona model across different platforms and tools.
 
 ## Overview
@@ -17,9 +19,7 @@ The model has been fine-tuned to role-play as specific personas from a documenta
 | Format | File | Use Case |
 |--------|------|----------|
 | **SafeTensors** | `model.safetensors` | Transformers, Python inference |
-| **GGUF Q5_K_M** | `model-Q5_K_M.gguf` | Ollama, llama.cpp (recommended) |
-| **GGUF Q4_K_M** | `model-Q4_K_M.gguf` | Memory-constrained systems |
-| **GGUF F16** | `model-f16.gguf` | Full precision, maximum quality |
+| **GGUF F16** | [`model-f16.gguf`](https://huggingface.co/ylliprifti/documentary-personas/blob/main/model-f16.gguf) | Ollama, llama.cpp, full precision |
 
 ---
 
@@ -57,7 +57,7 @@ Open a new Colab notebook and run:
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-MODEL_REPO = "username/persona-model"  # Replace with actual repo
+MODEL_REPO = "ylliprifti/documentary-personas"  # Replace with actual repo
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO)
 model = AutoModelForCausalLM.from_pretrained(
@@ -161,7 +161,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 Create a file named `Modelfile`:
 
 ```
-FROM ./model-Q5_K_M.gguf
+FROM ./model-f16.gguf
 
 PARAMETER temperature 0.7
 PARAMETER top_p 0.9
@@ -174,7 +174,7 @@ SYSTEM "You are a persona from a documentary about education and sustainable far
 
 ```bash
 # Download the GGUF file from HuggingFace
-huggingface-cli download username/persona-model model-Q5_K_M.gguf --local-dir .
+huggingface-cli download ylliprifti/documentary-personas model-f16.gguf --local-dir .
 
 # Create the Ollama model
 ollama create persona-model -f Modelfile
@@ -266,7 +266,7 @@ make -j
 
 # Run inference
 ./build/bin/llama-cli \
-  -m /path/to/model-Q5_K_M.gguf \
+  -m /path/to/model-f16.gguf \
   -p "You are Tilda, an educator.\n\nHuman: Why no exams?\n\nTilda:" \
   -n 256 \
   --temp 0.7 \
@@ -278,7 +278,7 @@ make -j
 ```bash
 # Start server
 ./build/bin/llama-server \
-  -m /path/to/model-Q5_K_M.gguf \
+  -m /path/to/model-f16.gguf \
   --host 0.0.0.0 \
   --port 8080
 
@@ -299,7 +299,7 @@ from llama_cpp import Llama
 
 # Load model
 llm = Llama(
-    model_path="./model-Q5_K_M.gguf",
+    model_path="./model-f16.gguf",
     n_ctx=2048,
     n_gpu_layers=-1  # Use all GPU layers
 )
@@ -322,7 +322,7 @@ print(output["choices"][0]["text"])
 from vllm import LLM, SamplingParams
 
 # Load model (safetensors format)
-llm = LLM(model="username/persona-model", dtype="float16")
+llm = LLM(model="ylliprifti/documentary-personas", dtype="float16")
 
 sampling_params = SamplingParams(
     temperature=0.7,
@@ -346,7 +346,7 @@ for output in outputs:
 ```bash
 # Start vLLM server
 python -m vllm.entrypoints.openai.api_server \
-  --model username/persona-model \
+  --model ylliprifti/documentary-personas \
   --dtype float16 \
   --port 8000
 
@@ -354,7 +354,7 @@ python -m vllm.entrypoints.openai.api_server \
 curl http://localhost:8000/v1/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "username/persona-model",
+    "model": "ylliprifti/documentary-personas",
     "prompt": "You are Tilda...",
     "max_tokens": 256
   }'
@@ -373,7 +373,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Load model
-model_path = "username/persona-model"
+model_path = "ylliprifti/documentary-personas"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(
     model_path,
@@ -493,7 +493,7 @@ import torch
 # Create pipeline
 pipe = pipeline(
     "text-generation",
-    model="username/persona-model",
+    model="ylliprifti/documentary-personas",
     torch_dtype=torch.float16,
     device_map="auto"
 )
@@ -527,9 +527,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
 # Load model
-tokenizer = AutoTokenizer.from_pretrained("username/persona-model")
+tokenizer = AutoTokenizer.from_pretrained("ylliprifti/documentary-personas")
 model = AutoModelForCausalLM.from_pretrained(
-    "username/persona-model",
+    "ylliprifti/documentary-personas",
     torch_dtype=torch.float16,
     device_map="auto"
 )
@@ -625,7 +625,7 @@ print(response.choices[0].text)
 
 | Issue | Solution |
 |-------|----------|
-| Out of memory | Use 4-bit quantization or GGUF Q4_K_M |
+| Out of memory | Use 4-bit quantization or smaller GGUF quantization |
 | Slow generation | Enable GPU layers in llama.cpp (`-ngl 99`) |
 | Responses off-topic | Use full prompt format with system context |
 | Model breaks character | Lower temperature (0.5-0.7) |
@@ -648,7 +648,7 @@ print(response.choices[0].text)
 - **Fine-tuning Method**: LoRA (r=64, alpha=128)
 - **Training Data**: Documentary transcripts (2020, 2023)
 - **Training Framework**: llm-training-workshop
-- **Quantization**: Q5_K_M (GGUF)
+- **Quantization**: F16 (GGUF)
 - **Use Case**: Persona role-play, educational dialogue
 - **License**: [Check base model license]
 
@@ -665,6 +665,6 @@ ollama run persona-model "You are Tilda...\n\nHuman: About exams?\n\nTilda:"
 
 # Python (transformers)
 from transformers import pipeline
-pipe = pipeline("text-generation", model="username/persona-model")
+pipe = pipeline("text-generation", model="ylliprifti/documentary-personas")
 pipe("You are Tilda...")
 ```

@@ -575,13 +575,13 @@ python /path/to/llama.cpp/convert_hf_to_gguf.py \
 
 ```bash
 export HF_TOKEN="hf_xxxxxxxxxxxxx"
-export HF_REPO_ID="username/persona-model"
+export HF_REPO_ID="ylliprifti/documentary-personas"
 ```
 
 Or create a `.env` file:
 ```
 HF_TOKEN=hf_xxxxxxxxxxxxx
-HF_REPO_ID=username/persona-model
+HF_REPO_ID=ylliprifti/documentary-personas
 ```
 
 ### 3.2 Push Model
@@ -597,7 +597,7 @@ huggingface-cli upload $HF_REPO_ID outputs/llama3_8b/merged/model-Q5_K_M.gguf
 ### 3.3 Recommended Repo Structure on HuggingFace
 
 ```
-username/persona-model/
+ylliprifti/documentary-personas/
 ├── config.json
 ├── model.safetensors
 ├── tokenizer.json
@@ -672,7 +672,7 @@ make eval EVAL_CONFIG=eval_llama3_8b_baseline  # Baseline
 make gguf LLAMA_CPP=/path/to/llama.cpp
 
 # === PUBLISH ===
-export HF_TOKEN="hf_xxx" HF_REPO_ID="user/model"
+export HF_TOKEN="hf_xxx" HF_REPO_ID="ylliprifti/documentary-personas"
 make publish-hf
 huggingface-cli upload $HF_REPO_ID outputs/llama3_8b/merged/model-Q5_K_M.gguf
 ```

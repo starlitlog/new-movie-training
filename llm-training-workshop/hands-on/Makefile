@@ -157,7 +157,7 @@ eval-baseline:
 
 # === Model Packaging ===
 QUANT := Q5_K_M
-LLAMA_CPP := ../llama.cpp
+LLAMA_CPP := ../../../llama.cpp/ #~/Dev/llama.cpp/ #../llama.cpp
 CUDA_DEVICE := 0
 
 merge:
@@ -165,7 +165,7 @@ merge:
 	$(ACTIVATE) $(PYTHON) scripts/merge_model.py outputs/runs/latest/model --cuda $(CUDA_DEVICE)
 	@echo "✅ Merged model saved to outputs/runs/latest/merged"
 
-gguf: merge
+gguf: #merge
 	@echo "📦 Converting to GGUF ($(QUANT))..."
 	$(ACTIVATE) $(PYTHON) $(LLAMA_CPP)/convert_hf_to_gguf.py \
 		outputs/runs/latest/merged \
